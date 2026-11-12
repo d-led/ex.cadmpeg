@@ -1,17 +1,20 @@
 # ex_cadmpeg
 
-Native CAD files on the BEAM, read into one format-neutral document.
+An Elixir wrapper of [cadmpeg](https://github.com/cadmpeg/cadmpeg) to bring
+native CAD files onto the BEAM: SolidWorks `.sldprt`, CATIA `.CATPart`, Inventor
+`.ipt`/`.iam`, Creo, NX, Fusion `.f3d`, FreeCAD `.FCStd`, Rhino `.3dm`, IGES,
+STEP, Creo View `.pvz` and OpenUSD read into one format-neutral CAD document,
+and that document written back out. Wrapped via rustler; the engine underneath
+is pure Rust, so there is no vendor SDK, no OpenCascade and no CAD system
+installed anywhere.
 
-It is a binding of [cadmpeg](https://github.com/cadmpeg/cadmpeg), which reads
-SolidWorks `.sldprt`, CATIA `.CATPart`, Inventor `.ipt`/`.iam`, Creo, NX, Fusion
-`.f3d`, FreeCAD `.FCStd`, Rhino `.3dm`, IGES, STEP, Creo View `.pvz` and OpenUSD
-into a CAD IR, and writes that IR back out. Both are pure Rust: no vendor SDK, no
-OpenCascade, no CAD system installed anywhere.
+This build compiles in the STEP codec, so it reads and writes STEP — "Formats are
+compiled in" below says how a build carries another one.
 
 ```elixir
-{:ok, document} = Cadmpeg.open("bracket.sldprt")
+{:ok, document} = Cadmpeg.open("bracket.step")
 
-{:ok, report} = Cadmpeg.Document.write(document, "step", "bracket.step")
+{:ok, report} = Cadmpeg.Document.write(document, "step", "bracket-strict.step")
 ```
 
 `report` is the export report: what the encoder wrote, and what it could not
@@ -34,7 +37,7 @@ takes it, so asking three questions about one part reads it once. The handle is 
 Rust resource — it serves every process on its node and cannot be sent to another
 node, because the document is local.
 
-## Formulae, which is to say the formats, are compiled in
+## Formats are compiled in
 
 cadmpeg's codecs are Rust features. This package compiles in the STEP codec, so
 `formats/0` lists STEP as an input and as an output and does not pretend to read

@@ -41,10 +41,11 @@ defmodule Cadmpeg.MixProject do
   end
 
   defp description do
-    "Native CAD files on the BEAM — STEP, IGES, SolidWorks, CATIA, Inventor, " <>
-      "Creo, NX, Fusion, FreeCAD, Rhino — read into cadmpeg's format-neutral CAD " <>
-      "IR once, then questioned or written back out. Pure Rust engine, no vendor " <>
-      "SDK, no OpenCascade."
+    "An Elixir wrapper of github.com/cadmpeg/cadmpeg to bring native CAD files onto " <>
+      "the BEAM: SolidWorks, CATIA, Inventor, Creo, NX, Fusion, FreeCAD, Rhino, " <>
+      "IGES and STEP read into one format-neutral CAD document, and that document " <>
+      "written back out. Wrapped via rustler; no vendor SDK, no OpenCascade. This " <>
+      "build compiles in the STEP codec."
   end
 
   defp package do
