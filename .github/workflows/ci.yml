@@ -24,6 +24,10 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-24.04
+    # `mix docs` is a development task: ex_doc is a `:dev` dependency, so this
+    # job runs in dev while `test` and `types` run in test.
+    env:
+      MIX_ENV: dev
     steps:
       - uses: actions/checkout@v7
       - uses: erlef/setup-beam@v1
