@@ -1,0 +1,26 @@
+[package]
+name = "cadmpeg_nif"
+version = "0.1.0"
+authors = []
+edition = "2021"
+
+[lib]
+name = "cadmpeg_nif"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+# The CAD IR and the codec interfaces, from crates.io, at the one version.
+# `cadmpeg-registry` is what decides which format a file is and hands back the
+# codec for it; its features are the codecs that get compiled in, so a build
+# without `usd` cannot read a usdz and says so through `formats/0`.
+cadmpeg-core = "=0.6.11"
+cadmpeg-container = "=0.6.11"
+cadmpeg-ir = "=0.6.11"
+cadmpeg-registry = { version = "=0.6.11", default-features = false, features = ["step"] }
+rustler = "0.38"
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = true

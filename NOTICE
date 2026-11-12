@@ -1,0 +1,16 @@
+ExCadmpeg: native CAD files on the BEAM, read into one format-neutral document.
+
+Copyright (c) Dmitry Ledentsov and contributors.
+
+This Source Code Form is subject to the terms of the Mozilla Public License, v.
+2.0. If a copy of the MPL was not distributed with this file, You can obtain one
+at https://mozilla.org/MPL/2.0/.
+
+It builds on work by others, whose licences it keeps:
+
+  * cadmpeg — inspect and convert native CAD files, and the CAD IR underneath it
+    (https://github.com/cadmpeg/cadmpeg), Apache License 2.0, Copyright (c) the
+    cadmpeg authors. Used as a dependency; not modified.
+
+The STEP test fixture under `test/fixtures/` is a public NIST MBE PMI test case,
+taken from cadmpeg's and quiddity's test corpora.
