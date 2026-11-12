@@ -43,6 +43,7 @@ jobs:
           path: |
             deps
             _build
+            priv/native
           key: ${{ runner.os }}-otp${{ env.OTP_VERSION }}-${{ hashFiles('mix.lock') }}
       - run: mix deps.get
       - run: mix format --check-formatted
@@ -67,6 +68,7 @@ jobs:
           path: |
             deps
             _build
+            priv/native
           key: ${{ runner.os }}-otp${{ env.OTP_VERSION }}-${{ hashFiles('mix.lock') }}
       - run: mix deps.get
       - run: mix test
@@ -88,6 +90,7 @@ jobs:
           path: |
             deps
             _build
+            priv/native
             priv/plts
           key: ${{ runner.os }}-otp${{ env.OTP_VERSION }}-plt-${{ hashFiles('mix.lock') }}
       - run: mix deps.get
