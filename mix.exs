@@ -65,6 +65,7 @@ defmodule Cadmpeg.MixProject do
       groups_for_modules: [
         "The document": [Cadmpeg, Cadmpeg.Document],
         Refusals: [Cadmpeg.Error],
+        "Model Context Protocol": [Cadmpeg.Mcp, Cadmpeg.Mcp.Tools],
         "The engine": [Cadmpeg.Native]
       ]
     ]

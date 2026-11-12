@@ -48,6 +48,20 @@ cadmpeg-registry = { version = "=0.6.11", default-features = false, features = [
 Each codec is its own crate, so a build carries only the formats it needs. Which
 formats a build has is a fact about the binary in the VM, not a promise.
 
+## As an MCP server
+
+`mix cadmpeg.mcp` speaks the Model Context Protocol over stdio, so an assistant
+can ask about a file directly:
+
+```json
+{"mcpServers": {"cadmpeg": {"command": "mix", "args": ["cadmpeg.mcp"]}}}
+```
+
+Three tools: `cadmpeg_formats` — what this build reads and writes —
+`cadmpeg_inspect`, which answers the decode report rather than just "it
+opened", and `cadmpeg_convert`, which writes the file you name and reports what
+the target could not carry.
+
 ## Install
 
 ```elixir
