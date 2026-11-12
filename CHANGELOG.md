@@ -21,6 +21,11 @@ decode report of a file, and a conversion. One document opened once per process.
 - **Companions.** A native format that keeps parts of itself in files beside it
   is read against the directory the file is in, and a companion cannot be
   resolved outside it.
+- **A translated case.** `test/cadmpeg/upstream_test.exs` carries cadmpeg's
+  `writer_pipeline_round_trips_the_full_cube_across_schemas_and_refuses_lossy_strict_output`
+  at this binding's level: every STEP schema is written twice, the two writes are
+  the same bytes, the file is read back as the schema it was written for, and it
+  keeps its bodies and faces.
 
 ### Measured
 
