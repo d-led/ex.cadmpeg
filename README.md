@@ -1,15 +1,15 @@
 # ex_cadmpeg
 
-An Elixir wrapper of [cadmpeg](https://github.com/cadmpeg/cadmpeg) to bring
-native CAD files onto the BEAM: SolidWorks `.sldprt`, CATIA `.CATPart`, Inventor
-`.ipt`/`.iam`, Creo, NX, Fusion `.f3d`, FreeCAD `.FCStd`, Rhino `.3dm`, IGES,
-STEP, Creo View `.pvz` and OpenUSD read into one format-neutral CAD document,
-and that document written back out. Wrapped via rustler; the engine underneath
-is pure Rust, so there is no vendor SDK, no OpenCascade and no CAD system
-installed anywhere.
+Read a STEP file on the BEAM, and write one back, through
+[cadmpeg](https://github.com/cadmpeg/cadmpeg)'s format-neutral CAD document.
+Both sides are pure Rust — no vendor SDK, no OpenCascade and no CAD system
+installed anywhere — reached through Rustler.
 
-This build compiles in the STEP codec, so it reads and writes STEP — "Formats are
-compiled in" below says how a build carries another one.
+The engine reads and writes SolidWorks `.sldprt`, CATIA `.CATPart`, Inventor
+`.ipt`/`.iam`, Creo, NX, Fusion `.f3d`, FreeCAD `.FCStd`, Rhino `.3dm`, IGES,
+STEP, Creo View `.pvz` and OpenUSD, each as a compiled-in codec. **This build
+carries STEP**: `Cadmpeg.formats/0` is the answer to what *your* build reads, and
+"Formats are compiled in" below is how a build carries another one.
 
 ```elixir
 {:ok, document} = Cadmpeg.open("bracket.step")
@@ -25,12 +25,12 @@ always gives the same document.
 
 ## What it answers
 
-| Question | Call |
-| --- | --- |
-| What does this build read and write? | `Cadmpeg.formats/0` |
-| Read a part, and how faithfully? | `Cadmpeg.open/1` — the handle and the decode report |
-| Convert it | `Cadmpeg.convert/4`, or `Cadmpeg.Document.write/4` |
-| Keep it without the handle | `Cadmpeg.Document.to_json/1`, `Cadmpeg.from_json/1` |
+| Question                        | Call                                                      |
+| ------------------------------- | --------------------------------------------------------- |
+| What does this build read and write? | `Cadmpeg.formats/0`                                  |
+| Read a part, and how faithfully? | `Cadmpeg.open/1` — the handle and the decode report      |
+| Convert it                      | `Cadmpeg.convert/4`, or `Cadmpeg.Document.write/4`        |
+| Keep it without the handle      | `Cadmpeg.Document.to_json/1`, `Cadmpeg.from_json/1`       |
 
 A document is parsed **once**: `open/1` answers a handle and every later call
 takes it, so asking three questions about one part reads it once. The handle is a
@@ -76,6 +76,17 @@ end
 The Rust engine is compiled when the dependency is: **building wants a Rust
 toolchain** (1.88 or later, which is what cadmpeg itself requires), and running
 wants none.
+
+## Where to find what
+
+| Question                                        | Where                                                                            |
+| ----------------------------------------------- | -------------------------------------------------------------------------------- |
+| The curated surface                             | [`Cadmpeg`](https://hexdocs.pm/ex_cadmpeg/Cadmpeg.html)                           |
+| The document: what the handle holds, how to keep it | [`Cadmpeg.Document`](https://hexdocs.pm/ex_cadmpeg/Cadmpeg.Document.html)     |
+| What a refusal means, and the codes to branch on | [`Cadmpeg.Error`](https://hexdocs.pm/ex_cadmpeg/Cadmpeg.Error.html)              |
+| The document in the middle, and where the binding stops | [`ir`](https://hexdocs.pm/ex_cadmpeg/ir.html)                            |
+| The protocol server and its tools               | [`Cadmpeg.Mcp`](https://hexdocs.pm/ex_cadmpeg/Cadmpeg.Mcp.html), [`Cadmpeg.Mcp.Tools`](https://hexdocs.pm/ex_cadmpeg/Cadmpeg.Mcp.Tools.html) |
+| Working on the package: the NIF, the codecs, tests, releasing | [`development`](https://hexdocs.pm/ex_cadmpeg/development.html)   |
 
 ## Limits, said out loud
 

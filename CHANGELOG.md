@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.1
+
+The front page says what this build does, and the how-to said whom it is for.
+
+### Changed
+
+- `README.md` opened with the eleven formats cadmpeg's engine supports and a
+  note further down that this build compiles in STEP — so the first thing a
+  reader on HexDocs met promised files the package cannot open. It now opens
+  with STEP, and the engine's wider set is named as the engine's, with
+  `Cadmpeg.formats/0` as the answer for the build in hand.
+- The README gained a table of where each other question is answered (the
+  document, refusals, the IR, the MCP tools), and everything about changing the
+  package moved to `docs/development.md`: the layout, the codec line in
+  `Cargo.toml`, the tests, CI and releasing.
+
 ## 0.1.0
 
 The first release: cadmpeg on the BEAM, STEP in and out.

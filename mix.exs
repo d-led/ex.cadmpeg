@@ -1,7 +1,7 @@
 defmodule Cadmpeg.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @source_url "https://github.com/d-led/ex.cadmpeg"
 
   def project do
@@ -61,11 +61,11 @@ defmodule Cadmpeg.MixProject do
   defp docs do
     [
       main: "readme",
-      extras: ["README.md", "docs/ir.md"],
+      extras: ["README.md", "docs/ir.md", "docs/development.md"],
       groups_for_modules: [
         "The document": [Cadmpeg, Cadmpeg.Document],
         Refusals: [Cadmpeg.Error],
-        "Model Context Protocol": [Cadmpeg.Mcp, Cadmpeg.Mcp.Tools],
+        "Model Context Protocol": [Cadmpeg.Mcp, Cadmpeg.Mcp.Tools, Mix.Tasks.Cadmpeg.Mcp],
         "The engine": [Cadmpeg.Native]
       ]
     ]
